@@ -1,0 +1,2 @@
+templates:
+opencode -s ses_0f964b5feffekj2j1ONJWtirxJ

@@ -39,7 +39,7 @@ Version      : 1.0
 */
 body {
 color:#555;
-font-family: 'Lexend', sans-serif;
+font-family: 'Lexend', 'Noto Sans Khmer', sans-serif;
 font-size: 16px;
 font-weight: 400;
 line-height: 26px;
@@ -54,12 +54,12 @@ h5,
 h6 {
   letter-spacing: 0px;
   margin: 0px;
-  font-family: 'Lexend', sans-serif;
+  font-family: 'Lexend', 'Noto Sans Khmer', sans-serif;
   color: #1a2d62;
   font-weight: 400;
 }
 a {
-	font-family: 'Lexend', sans-serif;
+	font-family: 'Lexend', 'Noto Sans Khmer', sans-serif;
     text-decoration: none;
 	color:#1a2d62;
     -webkit-transition: all 0.2s;
@@ -84,25 +84,8 @@ li {
     padding: 0;
 	list-style:none;
 }
-html.lenis,
-html.lenis body {
-    height: auto;
-}
-
-.lenis.lenis-smooth {
-    scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-    overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-    overflow: hidden;
-}
-
-.lenis.lenis-smooth iframe {
-    pointer-events: none;
+html {
+    scroll-behavior: smooth;
 }
 fieldset {
     border: 0 none;
@@ -112,7 +95,7 @@ fieldset {
 b, strong {
 	font-weight: 600;
 }
-span{font-family: 'Lexend', sans-serif;}
+span{font-family: 'Lexend', 'Noto Sans Khmer', sans-serif;}
 .no-padding { padding: 0 }
 
 /*END PRELOADER DESIGN*/
@@ -799,7 +782,12 @@ position:relative;
 .home_me_img{	
 position: absolute;
 bottom: 0;}
-.home_me_img img{position:relative;}
+.home_me_img img{position:relative;max-width:100%;height:auto;}
+.home_me_img img[src*="home-image.png"] {
+	width: 650px !important;
+	max-width: 650px !important;
+	height: auto !important;
+}
 .home_img_two{padding-top:150px;padding-left:50px;}
 
 @media only screen and (max-width:480px) { 
@@ -1072,7 +1060,7 @@ transform: translate(0, -10px);
 }
 
 .ab_img{position:relative;}
-.ab_img img {}
+.ab_img img {width: 100%;}
  @media only screen and (max-width:880px){
 .ab_img img {width: 100%;}
 .ab_img{
@@ -4176,6 +4164,11 @@ background: #072032;
 .single_ins_img img {
 	width: 50%;
 }
+.single_ins_img img[src*="become-ins.png"] {
+	width: 210px !important;
+	max-width: 210px;
+	height: auto !important;
+}
 /*START HOME 2 BECOME INSTRUCTOR*/
 .insfreecourse2{
 	padding-top:0px;
@@ -5020,3 +5013,38 @@ transition:0.3s;
 .single-pricing-card:hover {
   box-shadow: 0px 4px 20px 0px rgba(207, 217, 249, 0.35);
 }
+
+/* CSS Animations (replaces WOW.js) */
+.wow { visibility: visible !important; opacity: 1 !important; }
+.fadeInUp {
+  -webkit-animation-name: fadeInUp; animation-name: fadeInUp;
+  -webkit-animation-duration: 1s; animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards;
+}
+.fadeIn {
+  -webkit-animation-name: fadeIn; animation-name: fadeIn;
+  -webkit-animation-duration: 1s; animation-duration: 1s;
+  -webkit-animation-fill-mode: forwards; animation-fill-mode: forwards;
+}
+@-webkit-keyframes fadeInUp {
+  from { opacity: 0; -webkit-transform: translate3d(0,40px,0); transform: translate3d(0,40px,0); }
+  to { opacity: 1; -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; -webkit-transform: translate3d(0,40px,0); transform: translate3d(0,40px,0); }
+  to { opacity: 1; -webkit-transform: translate3d(0,0,0); transform: translate3d(0,0,0); }
+}
+@-webkit-keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+[data-wow-delay="0.1s"] { -webkit-animation-delay: 0.1s; animation-delay: 0.1s; }
+[data-wow-delay="0.2s"] { -webkit-animation-delay: 0.2s; animation-delay: 0.2s; }
+[data-wow-delay="0.3s"] { -webkit-animation-delay: 0.3s; animation-delay: 0.3s; }
+[data-wow-delay="0.4s"] { -webkit-animation-delay: 0.4s; animation-delay: 0.4s; }
+[data-wow-delay="0.5s"] { -webkit-animation-delay: 0.5s; animation-delay: 0.5s; }
+[data-wow-delay="0.6s"] { -webkit-animation-delay: 0.6s; animation-delay: 0.6s; }

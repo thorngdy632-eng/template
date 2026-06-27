@@ -1,8 +1,3 @@
-/*
-Author       : theme_ocean 
-Template Name: Purdue - Education HTML Template
-Version      : 1.0
-*/
 (function($) {
 	'use strict';
 	
@@ -12,7 +7,7 @@ Version      : 1.0
 		jQuery(window).on('load',function() {
 		  setTimeout(function(){
 			$('.preloaders').fadeToggle();
-			}, 1500);
+			}, 300);
 		});
 		/*END PRELOADER JS*/	
 			
@@ -46,13 +41,12 @@ Version      : 1.0
 		  mainClass: 'mfp-fade',
 		  removalDelay: 160,
 		  preloader: false,
-		  fixedContentPos: false,
-		  disableOn: 300
+		  fixedContentPos: false
 		});			
 
 		/*START PARTNER LOGO*/
 		$('.partner').owlCarousel({
-		  autoPlay: 3000, //Set AutoPlay to 3 seconds
+		  autoPlay: 3000,
 		  items : 4,
 		  itemsDesktop : [1199,3],
 		  itemsDesktopSmall : [979,3]
@@ -110,42 +104,40 @@ Version      : 1.0
     rangeSlider();
 	/*END RANGE SLIDER*/
 	
-	/*INITIATE PURE COUNTER*/
-		$('.counter_feature').on('inview', function(event, visible, visiblePartX, visiblePartY) {
-			if (visible) {
-				$(this).find('.counter-num').each(function () {
-					var $this = $(this);
-					$({ Counter: 0 }).animate({ Counter: $this.text() }, {
-						duration: 2000,
-						easing: 'swing',
-						step: function () {
-							$this.text(Math.ceil(this.Counter));
-						}
-					});
+	/*COUNTER ANIMATION WITH INTERSECTION OBSERVER*/
+	function animateCounter(element, target) {
+		var current = 0;
+		var increment = Math.ceil(target / 60);
+		var timer = setInterval(function() {
+			current += increment;
+			if (current >= target) {
+				current = target;
+				clearInterval(timer);
+			}
+			element.textContent = current;
+		}, 16);
+	}
+
+	var observer = new IntersectionObserver(function(entries) {
+		entries.forEach(function(entry) {
+			if (entry.isIntersecting) {
+				var counters = entry.target.querySelectorAll('.counter-num');
+				counters.forEach(function(counter) {
+					animateCounter(counter, parseInt(counter.textContent));
 				});
-				$(this).unbind('inview');
+				observer.unobserve(entry.target);
 			}
 		});
-		
-		
+	}, { threshold: 0.5 });
 
-	/*START WOW ANIMATION JS*/
-	  new WOW().init();	
-	/*END WOW ANIMATION JS*/	
+	document.addEventListener('DOMContentLoaded', function() {
+		var counterSection = document.querySelector('.counter_feature');
+		if (counterSection) {
+			observer.observe(counterSection);
+		}
+	});
+	/*END COUNTER ANIMATION*/
 	
-	const lenis = new Lenis()
-
-
-    lenis.on('scroll', ScrollTrigger.update)
-
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000)
-    })
-
-    gsap.ticker.lagSmoothing(0)
+	/*SMOOTH SCROLL - NATIVE CSS*/
 			
 })(jQuery);
-
-
-  
-
